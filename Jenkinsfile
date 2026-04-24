@@ -7,6 +7,11 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 echo 'Testing..'
             }
@@ -23,9 +28,6 @@ pipeline {
         }
         success {
             echo 'Pipeline succeeded!'
-        }
-        failure {
-            echo 'Pipeline failed!'
         }
     }
 }
